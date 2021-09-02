@@ -1,0 +1,69 @@
+<ion-header color="danger">
+    <ion-toolbar color="danger">
+        <ion-title color="dark">Pedido</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+
+    <form (ngSubmit)="finalizarPedido()">
+        <ion-list>
+            <ion-list-header>
+                <h3>Complete su Pedido</h3>
+            </ion-list-header>
+            <ion-item>
+                <ion-input type="text" placeholder="Nombre" name="nombre" [(ngModel)]="pedido.nombre"></ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-input type="text" placeholder="Apellido" name="apellido" [(ngModel)]="pedido.apellido"></ion-input>
+            </ion-item>
+
+            <ion-list>
+                <ion-radio-group name="metodoPago" [(ngModel)]="pedido.metodoPago">
+                    <ion-list-header>
+                        <ion-label>Método de Pago</ion-label>
+                    </ion-list-header>
+                    <ion-item>
+                        <ion-label>Efectivo</ion-label>
+                        <ion-radio value="Efectivo"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Mercado Pago</ion-label>
+                        <ion-radio value="Mercado Pago"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </ion-list>
+
+            <ion-list>
+                <ion-radio-group name="modoEntrega" [(ngModel)]="pedido.modoEntrega">
+                    <ion-list-header>
+                        <ion-label>Modo de Entrega</ion-label>
+                    </ion-list-header>
+                    <ion-item>
+                        <ion-label>Paso a Buscar</ion-label>
+                        <ion-radio value="Paso a Buscar"></ion-radio>
+                    </ion-item>
+                    <ion-item>
+                        <ion-label>Entrega a Domicilio</ion-label>
+                        <ion-radio value="Entrega a Domicilio"></ion-radio>
+                    </ion-item>
+                </ion-radio-group>
+            </ion-list>
+
+            <div class="form-group" class="ion-padding" *ngIf="pedido.modoEntrega == 'Entrega a Domicilio'">
+                <label for="exampleFormControlTextarea1">Ingrese su Dirección</label>
+                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3" name="direccion" [(ngModel)]="pedido.direccion"></textarea>
+            </div>
+
+        </ion-list>
+    </form>
+
+</ion-content>
+
+<ion-footer class="ion-no-border" color="ligth">
+    <ion-toolbar color="danger">
+        <ion-button color="success" expand="block" shape="round" (click)="finalizarPedido()" routerLink="/home">
+            Finalizar pedido
+            <ion-icon name="logo-whatsapp"></ion-icon>
+        </ion-button>
+    </ion-toolbar>

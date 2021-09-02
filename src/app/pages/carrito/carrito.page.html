@@ -1,0 +1,45 @@
+<ion-header color="danger">
+    <ion-toolbar color="danger">
+        <ion-title color="dark">Carrito</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content class="ion-padding" color="ligth">
+
+    <ion-grid color="ligth">
+        <ion-row color="ligth">
+            <ion-col size="12" size-lg="3" size-md="4" size-sm="6" size-xs="12" *ngFor="let item of listaCarrito" color="ligth">
+
+                <ion-list class="ion-list" color="ligth">
+                    <ion-item color="ligth">
+                        <ion-label>
+                            <ion-avatar>
+                                <img [src]="item.img">
+                            </ion-avatar>
+                            <h4>Precio: {{item.precio | currency:'ARS':'$'}}</h4>
+                        </ion-label>
+                        <ion-button slot="end" (click)="quitarProducto(item)">
+                            <ion-icon name="close-outline"></ion-icon>
+                        </ion-button>
+                    </ion-item>
+
+                </ion-list>
+
+            </ion-col>
+
+        </ion-row>
+    </ion-grid>
+
+    <ion-label class="ion-padding">
+        <h4>Importe total: {{importeTotal | currency:'ARS':'$'}}</h4>
+    </ion-label>
+</ion-content>
+
+
+<ion-footer class="ion-no-border" color="ligth">
+    <ion-toolbar color="danger">
+        <ion-button color="dark" expand="block" shape="round" (click)="completarDatos()" routerLink="/pedido">
+            Completar Datos
+        </ion-button>
+    </ion-toolbar>
+</ion-footer>
